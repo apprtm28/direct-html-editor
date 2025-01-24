@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-helvetica {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Layout styles */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.header-container {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  z-index: 50;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+}
+
+.header-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.toolbar-container {
+  position: sticky;
+  top: 0;
+  background: #f9fafb;
+  z-index: 40;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+}
+
+.toolbar-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.content-container {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.content-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+/* Editor Container */
+.editor-container {
+  @apply bg-white border border-gray-200 rounded-lg shadow-sm;
+}
+
+/* Editor Toolbar Styles */
+.editor-toolbar {
+  @apply flex flex-wrap items-center gap-0.5 p-1 border-b border-gray-200 bg-gray-50;
+}
+
+.toolbar-group {
+  @apply flex items-center mx-1;
+  @apply border-r border-gray-200 pr-1 last:border-r-0;
+}
+
+.toolbar-button {
+  @apply p-1.5 rounded text-gray-600 text-sm;
+  @apply hover:bg-gray-200 transition-colors duration-150;
+  @apply flex items-center justify-center min-w-[28px];
+}
+
+.toolbar-button.active {
+  @apply bg-gray-200 text-gray-800;
+}
+
+.toolbar-select {
+  @apply p-1 rounded border border-gray-300 text-sm min-w-[100px];
+  @apply focus:outline-none focus:ring-1 focus:ring-blue-500;
+  @apply bg-white text-gray-700;
+}
+
+/* Editor Content Area */
+.editor-content {
+  @apply bg-white p-8;
+  @apply min-h-[500px] overflow-auto;
+}
+
+.ProseMirror {
+  @apply min-h-[400px] focus:outline-none;
+  padding: 0 1rem;
+}
+
+/* Table Styles */
+.ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid #d1d5db;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  vertical-align: top;
+  position: relative;
+}
+
+.ProseMirror table th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+.ProseMirror table .selectedCell:after {
+  background: rgba(66, 153, 225, 0.2);
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.ProseMirror table .column-resize-handle {
+  background-color: #3b82f6;
+  bottom: -2px;
+  position: absolute;
+  right: -2px;
+  pointer-events: none;
+  top: 0;
+  width: 4px;
+}
+
+/* Document Table Styles (for preview) */
+.document-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  border: 1px solid #d1d5db;
+}
+
+.document-table td,
+.document-table th {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+.document-table th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+/* Text Styles */
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+/* List Styles */
+.ProseMirror ul {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.ProseMirror ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.ProseMirror ol[data-level="1"] {
+  list-style-type: decimal !important;
+  margin-left: 0 !important;
+}
+
+.ProseMirror ol[data-level="2"] {
+  list-style-type: lower-alpha !important;
+  margin-left: 1.5em !important;
+}
+
+.ProseMirror ol[data-level="3"] {
+  list-style-type: lower-roman !important;
+  margin-left: 3em !important;
+}
+
+.ProseMirror li {
+  margin: 0.2em 0;
+}
+
+/* Toolbar Divider */
+.toolbar-divider {
+  @apply w-px h-6 bg-gray-200 mx-1;
+}
+
+/* BE Variable styles */
+.be-variable {
+  display: inline-block;
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #374151;
+  white-space: nowrap;
+  margin: 0 2px;
+}
